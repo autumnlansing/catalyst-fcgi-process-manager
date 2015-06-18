@@ -40,7 +40,7 @@ my $mem;
 foreach my $pid (@pids) {
     $mem = `/bin/ps -o vsz= --pid $pid`;
 
-    if ( $mem >= $kbytes ) {
+    if ( $mem ne '' && $mem >= $kbytes ) {
         kill 'HUP', $pid or die 'Unable to kill process';
 
         # Give the process time to die before killing another one.
